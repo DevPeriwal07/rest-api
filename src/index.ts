@@ -1,9 +1,11 @@
 import express from 'express';
 import { usersRouter } from './routes/user-route';
+import { authenticate } from './middlewares/authenticate';
 
 const app = express();
 
 app.use(express.json());
+app.use(authenticate);
 
 // routes
 app.use('/api/users', usersRouter);
