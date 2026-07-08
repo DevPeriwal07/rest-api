@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 
-export function authenticate({ key }: { key: string }) {
+export function authenticate({ secret_key }: { secret_key: string }) {
   return (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers['authorization'];
 
@@ -20,7 +20,7 @@ export function authenticate({ key }: { key: string }) {
       return;
     }
 
-    if (token !== key) {
+    if (key !== secret_key) {
       res.status(403).json({ error: 'Forbidden' });
       return;
     }
