@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import { usersRouter } from './routes/user-route';
 import { authenticate } from './middlewares/authenticate';
@@ -5,7 +6,9 @@ import { authenticate } from './middlewares/authenticate';
 const app = express();
 
 app.use(express.json());
-app.use(authenticate);
+app.use(authenticate({
+  key: process.env.SECRET_KEY!
+}));
 
 // routes
 app.use('/api/users', usersRouter);
