@@ -3,6 +3,8 @@ import express from 'express';
 import { usersRouter } from './routes/user-route';
 import { authenticate } from './middlewares/authenticate';
 
+dotenv.config();
+
 const app = express();
 
 app.use(express.json());
